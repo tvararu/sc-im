@@ -2916,6 +2916,10 @@ int is_single_command (struct block * buf, long timeout) {
                  buf->pnext->value == L'$'))
                  result = MOVEMENT_CMD;
 
+        else if (buf->value == L'g' && bs > 3 && buf->pnext->value == L'o' && find_val(buf, OKEY_ENTER))
+                 result = MOVEMENT_CMD; // goto cell
+                 // TODO add validation: buf->pnext->pnext->value must be a letter
+
         else if (buf->value == L'g' && bs > 3 && buf->pnext->value == L'o' && timeout >= COMPLETECMDTIMEOUT)
                  result = MOVEMENT_CMD; // goto cell
                  // TODO add validation: buf->pnext->pnext->value must be a letter
